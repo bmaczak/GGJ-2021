@@ -5,8 +5,15 @@ using UnityEngine;
 public class RotationManager : MonoBehaviour
 {
 	[SerializeField] MazeRotator _mazeRotator;
-	[SerializeField] private Transform _player;
+	[SerializeField] private PlayerController _player;
 	[SerializeField] private float _rotationAngleHorizontal;
+
+	float _playerRadius;
+
+	private void Awake()
+	{
+		_playerRadius = _player.GetComponent<SphereCollider>().radius;
+	}
 
 	private void Update()
 	{
@@ -29,11 +36,11 @@ public class RotationManager : MonoBehaviour
 
 	private void CheckPlaneRotation()
 	{
-		if (Input.GetKeyDown(KeyCode.Q))
+		if (Mathf.Abs(_player.transform.position.x - 0.776f) < 0.01f && _player.InputVector.x == -1)
 		{
 			_mazeRotator.RotateBy(Quaternion.AngleAxis(-120, new Vector3(1, 1, -1)));
 		}
-		else if (Input.GetKeyDown(KeyCode.E))
+		else if (Mathf.Abs(_player.transform.position.z + 0.776f) < 0.01f && _player.InputVector.z == 1)
 		{
 			_mazeRotator.RotateBy(Quaternion.AngleAxis(120, new Vector3(1, 1, -1)));
 		}
