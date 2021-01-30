@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5023173044952601425}
   - component: {fileID: 5023173044952601518}
   - component: {fileID: 5023173044952601424}
+  - component: {fileID: 1941152936}
   m_Layer: 0
   m_Name: PlayerPhysics
   m_TagString: Player
@@ -105,7 +106,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5023173044952601515}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 820ee7979f9641348b186086b6ab8661, type: 3}
   m_Name: 
@@ -120,7 +121,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5023173044952601515}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 820ee7979f9641348b186086b6ab8661, type: 3}
   m_Name: 
@@ -144,3 +145,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1941152936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5023173044952601515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36d028697007bc448b7ec0cbddcf80c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 1
+  _useNewAxes: 0
