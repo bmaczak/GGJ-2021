@@ -26,7 +26,6 @@ public class RotationY : MonoBehaviour
 			{
 				RotateBy(Quaternion.Euler(0, -1 * _rotationAngleHorizontal, 0));
 			}
-
 			else if (_player.transform.position.z > 0f)
 			{
 				RotateBy(Quaternion.Euler(0, _rotationAngleHorizontal, 0));
@@ -40,14 +39,18 @@ public class RotationY : MonoBehaviour
 		{
 			if (Input.GetKeyDown(KeyCode.Q))
 			{
-				RotateBy(Quaternion.Euler(0, -90, 90));
+				RotateBy(Quaternion.AngleAxis(-120, new Vector3(1, 1, -1)));
+			}
+			else if (Input.GetKeyDown(KeyCode.E))
+			{
+				RotateBy(Quaternion.AngleAxis(120, new Vector3(1, 1, -1)));
 			}
 		}
 	}
 
 	void RotateBy(Quaternion amount)
 	{
-        _isRotating = true;
+		_isRotating = true;
 		_startRotation = _rotateable.transform.rotation;
 		_targetRotation = amount * _rotateable.transform.rotation;
 		Tween.Value(0f, 1f, OnTweenProgress, _rotationDuration, 0f, Tween.EaseOutStrong, completeCallback: OnTweenFinished);

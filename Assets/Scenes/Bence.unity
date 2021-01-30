@@ -1428,7 +1428,7 @@ MonoBehaviour:
   _rotateable: {fileID: 1132085462}
   _player: {fileID: 991246718}
   _rotationAngleHorizontal: 90
-  _rotationDuration: 0.5
+  _rotationDuration: 0.75
 --- !u!1 &1477701017
 GameObject:
   m_ObjectHideFlags: 0
