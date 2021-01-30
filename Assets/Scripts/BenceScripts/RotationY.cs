@@ -65,4 +65,6 @@ public class RotationY : MonoBehaviour
 	{
 		_rotateable.transform.rotation = Quaternion.Slerp(_startRotation, _targetRotation, progress);
 	}
+
+	
 }
