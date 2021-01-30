@@ -1426,13 +1426,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rotateable: {fileID: 1132085462}
-  _labyrinthPivot: {fileID: 48910586}
-  _labyrinthPlaneAxis: {fileID: 1597073605}
-  _speed: 8
   _player: {fileID: 991246718}
   _rotationAngleHorizontal: 90
-  _deltaRotationY: 0.05
-  _rotationAnglePlane: 120
+  _rotationDuration: 0.5
 --- !u!1 &1477701017
 GameObject:
   m_ObjectHideFlags: 0
