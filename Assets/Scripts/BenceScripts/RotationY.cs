@@ -6,12 +6,17 @@ public class RotationY : MonoBehaviour
 {
     [SerializeField] private GameObject _rotateable;
     [SerializeField] private Transform _labyrinthPivot;
+    [SerializeField] private Transform _labyrinthPlaneAxis;
     [SerializeField] private float _speed;
     [SerializeField] private Transform _player;
     [SerializeField] private float _rotationAngleHorizontal;
+    [SerializeField] private float _deltaRotationY;
+    [SerializeField] private float _rotationAnglePlane;
 
-    private bool _doRotate;
-    private Quaternion _desiredAngle;
+    private bool _doRotateY;
+    private bool _doRotatePlane;
+    private Quaternion _desiredYAngle;
+    private Quaternion _desiredPlaneAngle;
     private float _angle;
 
     private void OnEnable()
@@ -24,6 +29,7 @@ public class RotationY : MonoBehaviour
         //RotationYTrigger.OnEnterTrigger -= DoYRotation;
     }
 
+    /*
     private void DoYRotation(string direction)
     {
         if (!_doRotate)
@@ -49,29 +55,28 @@ public class RotationY : MonoBehaviour
             Debug.Log("Desired y: " + _desiredAngle.y);
 
         }
-    }
+    }*/
 
     private void Update()
     {
         CheckHorizontalCoordinates();
         DoYRotation();
+        CheckPlaneRotation();
+        DoPlaneRotation();
 
-        
     }
 
     private void CheckHorizontalCoordinates()
     {
-        if(!_doRotate)
+        if(!_doRotateY && !_doRotatePlane)
         {
             if (_player.transform.position.x < 0f)
             {
-                //_angle = -90f;
                 SetNewYAngle((_rotationAngleHorizontal * -1));
             }
 
             else if (_player.transform.position.z > 0f)
             {
-                //_angle = 90f;
                 SetNewYAngle(_rotationAngleHorizontal);
             }
         }
@@ -79,20 +84,52 @@ public class RotationY : MonoBehaviour
 
     private void SetNewYAngle(float angle)
     {
-        _desiredAngle = _rotateable.transform.rotation * Quaternion.Euler(0, angle, 0);
-        _doRotate = true;
+        _desiredYAngle = _rotateable.transform.rotation * Quaternion.Euler(0, angle, 0);
+        _doRotateY = true;
     }
 
     private void DoYRotation()
     {
-        if (_doRotate)
+        if (_doRotateY && !_doRotatePlane)
         {
-            _rotateable.transform.rotation = Quaternion.Lerp(_rotateable.transform.rotation, _desiredAngle, _speed * Time.deltaTime);
+            _rotateable.transform.rotation = Quaternion.Lerp(_rotateable.transform.rotation, _desiredYAngle, _speed * Time.deltaTime);
 
-            if (Quaternion.Angle(_desiredAngle, _rotateable.transform.rotation) < 0.1)
+            if (Quaternion.Angle(_desiredYAngle, _rotateable.transform.rotation) < _deltaRotationY)
             {
-                _doRotate = false;
-                Debug.Log(_doRotate);
+                _doRotateY = false;
+            }
+        }
+    }
+
+    private void CheckPlaneRotation()
+    {
+        if (!_doRotateY && !_doRotatePlane)
+        {
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                SetNewPlaneAngle((_rotationAnglePlane * -1));
+            }
+        }
+       
+        
+    }
+
+    private void SetNewPlaneAngle(float angle)
+    {
+        //_desiredPlaneAngle = _rotateable.transform.rotation * Quaternion.AngleAxis(angle, _labyrinthPlaneAxis.forward);
+        _desiredPlaneAngle = _rotateable.transform.rotation * Quaternion.Euler(0, -90, 90);
+        _doRotatePlane = true;
+    }
+
+    private void DoPlaneRotation()
+    {
+        if (!_doRotateY && _doRotatePlane)
+        {
+            _rotateable.transform.rotation = Quaternion.Lerp(_rotateable.transform.rotation, _desiredPlaneAngle, _speed * Time.deltaTime);
+
+            if (Quaternion.Angle(_desiredPlaneAngle, _rotateable.transform.rotation) < _deltaRotationY)
+            {
+                _doRotatePlane = false;
             }
         }
     }
