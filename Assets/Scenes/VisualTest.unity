@@ -616,6 +616,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _direction: 0
+--- !u!114 &734622383 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1941152936, guid: e59d5feb9d6c05b42bf902d23d8386c0, type: 3}
+  m_PrefabInstance: {fileID: 495537577}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36d028697007bc448b7ec0cbddcf80c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &838475724
 GameObject:
   m_ObjectHideFlags: 0
@@ -1275,7 +1286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mazeRotator: {fileID: 1132085464}
-  _player: {fileID: 495537578}
+  _player: {fileID: 734622383}
   _rotationAngleHorizontal: 90
 --- !u!1 &1477701017
 GameObject:

@@ -7,12 +7,13 @@ public class RotationManager : MonoBehaviour
 	[SerializeField] MazeRotator _mazeRotator;
 	[SerializeField] private PlayerController _player;
 	[SerializeField] private float _rotationAngleHorizontal;
+	[SerializeField] private float _wallWidth;
 
 	float _playerRadius;
 
 	private void Awake()
 	{
-		_playerRadius = _player.GetComponent<SphereCollider>().radius;
+		_playerRadius = _player.GetComponent<SphereCollider>().radius * _player.transform.lossyScale.x;
 	}
 
 	private void Update()
@@ -36,11 +37,13 @@ public class RotationManager : MonoBehaviour
 
 	private void CheckPlaneRotation()
 	{
-		if (Mathf.Abs(_player.transform.position.x - 0.776f) < 0.01f && _player.InputVector.x == -1)
+		if (Mathf.Abs(_player.transform.position.x - (_playerRadius + _wallWidth)) < 0.01f 
+			&& _player.InputVector.x == -1)
 		{
 			_mazeRotator.RotateBy(Quaternion.AngleAxis(-120, new Vector3(1, 1, -1)));
 		}
-		else if (Mathf.Abs(_player.transform.position.z + 0.776f) < 0.01f && _player.InputVector.z == 1)
+		else if (Mathf.Abs(_player.transform.position.z + (_playerRadius + _wallWidth)) < 0.01f 
+			&& _player.InputVector.z == 1)
 		{
 			_mazeRotator.RotateBy(Quaternion.AngleAxis(120, new Vector3(1, 1, -1)));
 		}
