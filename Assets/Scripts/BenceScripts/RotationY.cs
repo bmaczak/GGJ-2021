@@ -7,6 +7,8 @@ public class RotationY : MonoBehaviour
     [SerializeField] private GameObject _rotateable;
     [SerializeField] private Transform _labyrinthPivot;
     [SerializeField] private float _speed;
+    [SerializeField] private Transform _player;
+    [SerializeField] private float _rotationAngleHorizontal;
 
     private bool _doRotate;
     private Quaternion _desiredAngle;
@@ -14,12 +16,12 @@ public class RotationY : MonoBehaviour
 
     private void OnEnable()
     {
-        RotationYTrigger.OnEnterTrigger += DoYRotation;
+        //RotationYTrigger.OnEnterTrigger += DoYRotation;
     }
 
     private void OnDisable()
     {
-        RotationYTrigger.OnEnterTrigger -= DoYRotation;
+        //RotationYTrigger.OnEnterTrigger -= DoYRotation;
     }
 
     private void DoYRotation(string direction)
@@ -51,7 +53,39 @@ public class RotationY : MonoBehaviour
 
     private void Update()
     {
-        if(_doRotate)
+        CheckHorizontalCoordinates();
+        DoYRotation();
+
+        
+    }
+
+    private void CheckHorizontalCoordinates()
+    {
+        if(!_doRotate)
+        {
+            if (_player.transform.position.x < 0f)
+            {
+                //_angle = -90f;
+                SetNewYAngle((_rotationAngleHorizontal * -1));
+            }
+
+            else if (_player.transform.position.z > 0f)
+            {
+                //_angle = 90f;
+                SetNewYAngle(_rotationAngleHorizontal);
+            }
+        }
+    }
+
+    private void SetNewYAngle(float angle)
+    {
+        _desiredAngle = _rotateable.transform.rotation * Quaternion.Euler(0, angle, 0);
+        _doRotate = true;
+    }
+
+    private void DoYRotation()
+    {
+        if (_doRotate)
         {
             _rotateable.transform.rotation = Quaternion.Lerp(_rotateable.transform.rotation, _desiredAngle, _speed * Time.deltaTime);
 
