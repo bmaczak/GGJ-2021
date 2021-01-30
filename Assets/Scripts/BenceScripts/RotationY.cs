@@ -84,7 +84,7 @@ public class RotationY : MonoBehaviour
 
     private void SetNewYAngle(float angle)
     {
-        _desiredYAngle = _rotateable.transform.rotation * Quaternion.Euler(0, angle, 0);
+        _desiredYAngle = Quaternion.Euler(0, angle, 0) * _rotateable.transform.rotation;
         _doRotateY = true;
     }
 
@@ -117,7 +117,7 @@ public class RotationY : MonoBehaviour
     private void SetNewPlaneAngle(float angle)
     {
         //_desiredPlaneAngle = _rotateable.transform.rotation * Quaternion.AngleAxis(angle, _labyrinthPlaneAxis.forward);
-        _desiredPlaneAngle = _rotateable.transform.rotation * Quaternion.Euler(0, -90, 90);
+        _desiredPlaneAngle = Quaternion.Euler(0, -90, 90) * _rotateable.transform.rotation;
         _doRotatePlane = true;
     }
 
@@ -125,7 +125,7 @@ public class RotationY : MonoBehaviour
     {
         if (!_doRotateY && _doRotatePlane)
         {
-            _rotateable.transform.rotation = Quaternion.Lerp(_rotateable.transform.rotation, _desiredPlaneAngle, _speed * Time.deltaTime);
+            _rotateable.transform.rotation = Quaternion.Slerp(_rotateable.transform.rotation, _desiredPlaneAngle, _speed * Time.deltaTime);
 
             if (Quaternion.Angle(_desiredPlaneAngle, _rotateable.transform.rotation) < _deltaRotationY)
             {
