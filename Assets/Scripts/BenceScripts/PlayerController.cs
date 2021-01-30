@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,8 @@ public class PlayerController : MonoBehaviour
 		VelocityChange
 	}
 
+	[SerializeField] private MazeRotator mazeRotator;
+
 	[SerializeField] private ForceMode _forceMode;
 
 	private Rigidbody _rigidbody;
@@ -21,10 +24,36 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] private bool _useNewAxes;
 	[SerializeField] private float _height;
 	private Vector3 _inputVector;
+	private Vector3 _relativeVelocityBeforeRotation;
 
 	void Start()
 	{
 		_rigidbody = GetComponent<Rigidbody>();
+	}
+
+	private void OnEnable()
+	{
+		mazeRotator.RotationStarted += OnRotationStarted;
+		mazeRotator.RotationFinished += OnRotationFinished;
+	}
+
+	private void OnDisable()
+	{
+		mazeRotator.RotationStarted -= OnRotationStarted;
+		mazeRotator.RotationFinished -= OnRotationFinished;
+	}
+
+
+	private void OnRotationStarted()
+	{
+		_relativeVelocityBeforeRotation = mazeRotator.transform.InverseTransformVector(_rigidbody.velocity);
+		_rigidbody.isKinematic = true;
+	}
+
+	private void OnRotationFinished()
+	{
+		_rigidbody.isKinematic = false;
+		_rigidbody.velocity = mazeRotator.transform.TransformVector(_relativeVelocityBeforeRotation);
 	}
 
 	private void Update()
@@ -40,9 +69,14 @@ public class PlayerController : MonoBehaviour
 
 	void FixedUpdate()
 	{
-		_rigidbody.AddForce(_inputVector * _speed, (UnityEngine.ForceMode)_forceMode);
-		_rigidbody.position = new Vector3(_rigidbody.position.x, _height, _rigidbody.position.z);
-		_rigidbody.velocity = new Vector3(_rigidbody.velocity.x, 0, _rigidbody.velocity.z);
+		if (mazeRotator.IsRotating)
+			_rigidbody.MovePosition(_rigidbody.position + mazeRotator.transform.TransformVector(_relativeVelocityBeforeRotation) * Time.fixedDeltaTime);
+		else
+		{
+			_rigidbody.AddForce(_inputVector * _speed, (UnityEngine.ForceMode)_forceMode);
+			_rigidbody.position = new Vector3(_rigidbody.position.x, _height, _rigidbody.position.z);
+			_rigidbody.velocity = new Vector3(_rigidbody.velocity.x, 0, _rigidbody.velocity.z);
+		}
 	}
 
 	public Vector3 InputVector => _inputVector;

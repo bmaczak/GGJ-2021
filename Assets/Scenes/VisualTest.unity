@@ -318,6 +318,10 @@ PrefabInstance:
       propertyPath: _forceMode
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1941152936, guid: e59d5feb9d6c05b42bf902d23d8386c0, type: 3}
+      propertyPath: mazeRotator
+      value: 
+      objectReference: {fileID: 1132085464}
     - target: {fileID: 5023173044952601515, guid: e59d5feb9d6c05b42bf902d23d8386c0, type: 3}
       propertyPath: m_Name
       value: PlayerPhysics

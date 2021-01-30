@@ -37,7 +37,6 @@ public class RotationManager : MonoBehaviour
 
 	private void CheckPlaneRotation()
 	{
-		Debug.Log(Mathf.Abs(_player.GetComponent<Rigidbody>().velocity.x));
 		if (Mathf.Abs(_player.transform.position.x - (_playerRadius + _wallWidth)) < 0.01f 
 			&& _player.InputVector.x == -1
 			&& Mathf.Abs(_player.GetComponent<Rigidbody>().velocity.x) < 0.0001f)
