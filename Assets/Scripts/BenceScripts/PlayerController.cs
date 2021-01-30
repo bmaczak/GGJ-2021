@@ -5,45 +5,45 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
 {
-    public enum ForceMode
-    {
-        Acceleration,
-        Force,
-        Impulse,
-        VelocityChange
-    }
+	public enum ForceMode
+	{
+		Acceleration,
+		Force,
+		Impulse,
+		VelocityChange
+	}
 
-    [SerializeField] private ForceMode _forceMode;
+	[SerializeField] private ForceMode _forceMode;
 
-    private Rigidbody _rigidbody;
-    [SerializeField] private float _speed;
+	private Rigidbody _rigidbody;
+	[SerializeField] private float _speed;
 
-    [SerializeField] private bool _useNewAxes;
-    private Vector3 inputVector;
+	[SerializeField] private bool _useNewAxes;
+	[SerializeField] private float _height;
+	private Vector3 _inputVector;
 
-    void Start()
-    {
-        _rigidbody = GetComponent<Rigidbody>();
-    }
+	void Start()
+	{
+		_rigidbody = GetComponent<Rigidbody>();
+	}
 
-    void FixedUpdate()
-    {
-        if (!_useNewAxes)
-        {
-            inputVector = new Vector3(Input.GetAxis("Horizontal") * _speed, 0, Input.GetAxis("Vertical") * _speed);
-        }
+	private void Update()
+	{
+		_inputVector = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+		if (_useNewAxes)
+		{
+			Vector3 newX = new Vector3(1, 0, 1) * Input.GetAxis("Horizontal");
+			Vector3 newZ = new Vector3(-1, 0, 1) * Input.GetAxis("Vertical");
+			_inputVector = (newX + newZ).normalized;
+		}
+	}
 
-        else if (_useNewAxes)
-        {
+	void FixedUpdate()
+	{
+		_rigidbody.AddForce(_inputVector * _speed, (UnityEngine.ForceMode)_forceMode);
+		_rigidbody.position = new Vector3(_rigidbody.position.x, _height, _rigidbody.position.z);
+		_rigidbody.velocity = new Vector3(_rigidbody.velocity.x, 0, _rigidbody.velocity.z);
+	}
 
-            Vector3 newX = new Vector3(1, 0, 1) * Input.GetAxis("Horizontal");
-            Vector3 newZ = new Vector3(-1, 0, 1) * Input.GetAxis("Vertical");
-
-            inputVector = (newX + newZ).normalized * _speed;
-
-        }
-
-        _rigidbody.AddForce(inputVector, (UnityEngine.ForceMode)_forceMode);
-        _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, 0, _rigidbody.velocity.z);
-    }
+	public Vector3 InputVector => _inputVector;
 }
