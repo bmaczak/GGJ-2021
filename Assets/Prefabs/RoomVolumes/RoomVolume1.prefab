@@ -329,7 +329,8 @@ MonoBehaviour:
   - {fileID: 8700765503866732118}
   - {fileID: 8700765505670059042}
   - {fileID: 8700765505220398611}
-  _spawnableObjects: []
+  _spawnableObjects:
+  - {fileID: 6051697064415859632, guid: b40efa83eac8acb45a654d2b5e45e2c5, type: 3}
 --- !u!1 &8700765505084448638
 GameObject:
   m_ObjectHideFlags: 0
