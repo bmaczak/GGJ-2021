@@ -39,7 +39,7 @@ public class RoomManager : MonoBehaviour
     void UpdateActiveRoom(int activeRoom)
     {
         _activeRoom = activeRoom;
-        Debug.Log("Active room is: " + _activeRoom);
+        Debug.Log("Active room is: " + (_activeRoom + 1).ToString());
     }
 
     private void InitiateNewSpawn()
