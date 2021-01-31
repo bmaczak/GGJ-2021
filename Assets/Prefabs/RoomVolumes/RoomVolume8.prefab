@@ -232,7 +232,7 @@ GameObject:
   - component: {fileID: 8005628920840693226}
   - component: {fileID: 8005628920840693225}
   m_Layer: 0
-  m_Name: RoomVolume5
+  m_Name: RoomVolume8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -325,7 +325,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 0f33e7b96e12b364cb2403ae224c248b, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 6bcf942cbb538774bb2c72270aeb4aac, type: 3}
+  m_audioClip: {fileID: 8300000, guid: d9f07de2a92b3674ea7979aba0fa50f9, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0
   m_Pitch: 1
