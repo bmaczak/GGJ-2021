@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class UIObjectCounter : MonoBehaviour
 {
-    [SerializeField] private Text _objectCounterText;
+    [SerializeField] private TMP_Text _objectCounterText;
     private int _counter;
 
     private void Start()
@@ -26,6 +24,6 @@ public class UIObjectCounter : MonoBehaviour
     private void IncreaseCounter()
     {
         _counter++;
-        _objectCounterText.text = _counter.ToString();
+        _objectCounterText.text = "Collected: " + _counter.ToString();
     }
 }
