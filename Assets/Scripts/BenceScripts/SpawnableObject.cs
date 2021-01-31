@@ -4,28 +4,36 @@ using UnityEngine;
 
 public class SpawnableObject : MonoBehaviour
 {
-    private bool _playerHit;
+	[SerializeField] ParticleSystem particleSystem;
+	[SerializeField] int particleCount;
 
-    public delegate void ObjectPickedUp();
-    public static event ObjectPickedUp OnObjectPickedUp;
+	private bool _playerHit;
 
-    private void Start()
-    {
-        _playerHit = false;
-    }
+	public delegate void ObjectPickedUp();
+	public static event ObjectPickedUp OnObjectPickedUp;
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player") && !_playerHit)
-        {
-            _playerHit = true;
+	private void Start()
+	{
+		_playerHit = false;
+	}
 
-            if (OnObjectPickedUp != null)
-            {
-                OnObjectPickedUp();
-            }
+	private void OnTriggerEnter(Collider other)
+	{
+		if (other.CompareTag("Player") && !_playerHit)
+		{
+			_playerHit = true;
+			SpawnParticle();
+			if (OnObjectPickedUp != null)
+			{
+				OnObjectPickedUp();
+			}
 
-            Destroy(gameObject);
-        }
-    }
+			Destroy(gameObject);
+		}
+	}
+
+	void SpawnParticle()
+	{
+		Instantiate(particleSystem, transform.position + transform.up, transform.rotation).Emit(particleCount);
+	}
 }
