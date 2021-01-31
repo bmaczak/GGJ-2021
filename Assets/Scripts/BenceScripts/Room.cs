@@ -49,7 +49,7 @@ public class Room : MonoBehaviour
         int spawnPointIndex = Random.Range(0, _spawnPoints.Length);
         int spawnObjectIndex = Random.Range(0, _spawnableObjects.Length);
 
-        GameObject spawnedObject =  Instantiate(_spawnableObjects[spawnObjectIndex], _spawnPoints[spawnPointIndex].position, Quaternion.identity);
+        GameObject spawnedObject =  Instantiate(_spawnableObjects[spawnObjectIndex], _spawnPoints[spawnPointIndex].position, _spawnPoints[spawnPointIndex].rotation);
         spawnedObject.transform.parent = (this.transform);
 
         if(OnNewObjectSpawned != null)
