@@ -37,14 +37,14 @@ public class RotationManager : MonoBehaviour
 
 	private void CheckPlaneRotation()
 	{
-		if (Mathf.Abs(_player.transform.position.x - (_playerRadius + _wallWidth)) < 0.01f 
+		if (_player.transform.position.x < _playerRadius + _wallWidth
 			&& _player.InputVector.x == -1
 			&& _player.InputVector.z == 0
 			&& Mathf.Abs(_player.GetComponent<Rigidbody>().velocity.x) < 0.0001f)
 		{
 			_mazeRotator.RotateBy(Quaternion.AngleAxis(-120, new Vector3(1, 1, -1)));
 		}
-		else if (Mathf.Abs(_player.transform.position.z + (_playerRadius + _wallWidth)) < 0.01f 
+		else if (_player.transform.position.z > -_playerRadius - _wallWidth
 			&& _player.InputVector.z == 1
 			&& _player.InputVector.x == 0
 			&& Mathf.Abs(_player.GetComponent<Rigidbody>().velocity.z) < 0.0001f)
