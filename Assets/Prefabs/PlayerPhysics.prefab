@@ -12,8 +12,6 @@ GameObject:
   - component: {fileID: 5023173044952601516}
   - component: {fileID: 5023173044952601517}
   - component: {fileID: 5023173044952601514}
-  - component: {fileID: 5023173044952601425}
-  - component: {fileID: 5023173044952601518}
   - component: {fileID: 5023173044952601424}
   - component: {fileID: 1941152936}
   m_Layer: 6
@@ -99,36 +97,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5023173044952601425
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5023173044952601515}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 820ee7979f9641348b186086b6ab8661, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  v3Force: {x: 1, y: 0, z: 0}
-  keyPositive: 100
-  keyNegative: 97
---- !u!114 &5023173044952601518
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5023173044952601515}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 820ee7979f9641348b186086b6ab8661, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  v3Force: {x: 0, y: 0, z: 1}
-  keyPositive: 119
-  keyNegative: 115
 --- !u!54 &5023173044952601424
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -158,7 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mazeRotator: {fileID: 0}
-  _forceMode: 0
-  _acceleration: 0
-  _maxSpeed: 0
-  _useNewAxes: 0
+  _forceMode: 3
+  _acceleration: 20
+  _maxSpeed: 10
+  _useNewAxes: 1
