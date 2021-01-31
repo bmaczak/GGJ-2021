@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5023173044952601518}
   - component: {fileID: 5023173044952601424}
   - component: {fileID: 1941152936}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerPhysics
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 7d24b1f298192ce4fa8b1b8955a0c31a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -157,5 +157,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36d028697007bc448b7ec0cbddcf80c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 1
+  mazeRotator: {fileID: 0}
+  _forceMode: 0
+  _acceleration: 0
+  _maxSpeed: 0
   _useNewAxes: 0
