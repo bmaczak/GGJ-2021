@@ -5,10 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/VisualTest.unity
-    guid: 5d59567e55d05ff45a6223acffb3876d
   - enabled: 1
-    path: Assets/Scenes/Bence.unity
-    guid: 2d2bd6e929258aa40863c5ebccf3b54a
+    path: Assets/Scenes/Menu.unity
+    guid: b5baaa2072cc96d4895081f4e2e288f5
+  - enabled: 1
+    path: Assets/Scenes/Game.unity
+    guid: 261028f499aa03942bbb94717e7ea191
   m_configObjects: {}
