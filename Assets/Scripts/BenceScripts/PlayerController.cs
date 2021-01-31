@@ -23,13 +23,14 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] private float _maxSpeed;
 
 	[SerializeField] private bool _useNewAxes;
-	[SerializeField] private float _height;
+	private float _height;
 	private Vector3 _inputVector;
 	private Vector3 _relativeVelocityBeforeRotation;
 
 	void Start()
 	{
 		_rigidbody = GetComponent<Rigidbody>();
+		SetGroundHeight();
 	}
 
 	private void OnEnable()
@@ -76,6 +77,15 @@ public class PlayerController : MonoBehaviour
 			_rigidbody.position = new Vector3(_rigidbody.position.x, _height, _rigidbody.position.z);
 			_rigidbody.velocity = Vector3.ClampMagnitude(new Vector3(_rigidbody.velocity.x, 0, _rigidbody.velocity.z), _maxSpeed);
 		}
+	}
+
+	void SetGroundHeight()
+	{
+        RaycastHit hit;
+		if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity))
+        {
+            _height = hit.point.y + GetComponent<SphereCollider>().radius;
+        }
 	}
 
 	public Vector3 InputVector => _inputVector;
