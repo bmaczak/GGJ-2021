@@ -21,13 +21,6 @@ public class AudioTriggerManager : MonoBehaviour
         source = GetComponent<AudioSource>();
     }
 
-    public void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            PlayerEntered();
-        }
-    }
 
     void LateUpdate()
     {
